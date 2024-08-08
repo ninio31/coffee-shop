@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niño's Coffee Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Niño's Coffee Shop</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="container">
+            <h2>About Us</h2>
+            <p>At Niño's Coffee Shop, we serve the finest coffee in town. Come in for a relaxing experience and enjoy our wide variety of coffee blends and pastries.</p>
+        </section>
+
+        <section id="menu" class="container">
+            <h2>Menu</h2>
+            <form id="menuForm">
+                <ul>
+                    <li>
+                        <input type="checkbox" id="espresso" name="menuItem" value="Espresso - $3.00">
+                        <label for="espresso">
+                            <img src="images/espresso.jpg" alt="Espresso">
+                            Espresso - $3.00
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="latte" name="menuItem" value="Latte - $4.00">
+                        <label for="latte">
+                            <img src="images/latte.jpg" alt="Latte">
+                            Latte - $4.00
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="cappuccino" name="menuItem" value="Cappuccino - $4.00">
+                        <label for="cappuccino">
+                            <img src="images/cappuccino.jpg" alt="Cappuccino">
+                            Cappuccino - $4.00
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="americano" name="menuItem" value="Americano - $3.50">
+                        <label for="americano">
+                            <img src="images/americano.jpg" alt="Americano">
+                            Americano - $3.50
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="mocha" name="menuItem" value="Mocha - $4.50">
+                        <label for="mocha">
+                            <img src="images/mocha.jpg" alt="Mocha">
+                            Mocha - $4.50
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="pastry" name="menuItem" value="Pastries - $2.00 each">
+                        <label for="pastry">
+                            <img src="images/pastry.jpg" alt="Pastry">
+                            Pastries - $2.00 each
+                        </label>
+                    </li>
+                </ul>
+                <button type="button" class="checkout-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </form>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Contact Us</h2>
+            <p>Address: 123 Coffee St, Bean Town</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: info@nioscoffee.com</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Niño's Coffee Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function proceedToCheckout() {
+            const selectedItems = [];
+            const checkboxes = document.querySelectorAll('input[name="menuItem"]:checked');
+            checkboxes.forEach((checkbox) => {
+                selectedItems.push(checkbox.value);
+            });
+
+            if (selectedItems.length > 0) {
+                const queryString = selectedItems.map(item => `item=${encodeURIComponent(item)}`).join('&');
+                window.location.href = `checkout.html?${queryString}`;
+            } else {
+                alert('Please select at least one item.');
+            }
+        }
+    </script>
+</body>
+</html>
